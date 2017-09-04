@@ -1,46 +1,27 @@
 package com.sardox.weatherapp.utils;
 
 
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 
 public class WeatherForecast {
-    private String search_key = "";
+    //private String search_key = "";
     private String locationName = "";
-    private double lat = 0;
-    private double lon =0;
+    private MyCacheKey key;
+
+    public MyCacheKey getKey() {
+        return key;
+    }
+
+    public void setKey(MyCacheKey key) {
+        this.key = key;
+    }
+
     private String weather_description = "";
     private float temp = 0;
     private float humidity = 0;
 
     public WeatherForecast() {
     }
-
-    public void setSearch_key(String search_key) {
-        this.search_key = search_key;
-    }
-
-
-    public String getSearch_key() {
-        return search_key;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
-
-
-
 
 
     public String getLocationName() {

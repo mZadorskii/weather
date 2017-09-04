@@ -7,6 +7,10 @@ package com.sardox.weatherapp.model.Providers.WeatherProvider.cache;
 public class ZipKey implements MyCacheKey {
     private String zip;
 
+    public String getZip() {
+        return zip;
+    }
+
     public ZipKey(String zip) {
         this.zip = zip;
     }

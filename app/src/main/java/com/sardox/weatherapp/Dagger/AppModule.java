@@ -81,7 +81,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    HashMap<String, RecentItem> recentItemHashMap() {
+    HashMap<MyCacheKey, RecentItem> recentItemHashMap() {
         return new HashMap<>();
     }
 

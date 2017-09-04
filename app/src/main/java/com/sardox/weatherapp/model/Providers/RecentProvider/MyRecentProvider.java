@@ -4,6 +4,7 @@ package com.sardox.weatherapp.model.Providers.RecentProvider;
 import android.util.Log;
 
 import com.sardox.weatherapp.model.Providers.RecentProvider.AppPrefManager.AppPref;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,10 +19,10 @@ public class MyRecentProvider implements RecentProvider {
      * proper key should be location{lat, lon} + name, not just name
      * for example, somewhere is pacific ocean api will return empty location
      */
-    private HashMap<String, RecentItem> recentItemHashMap;
+    private HashMap<MyCacheKey, RecentItem> recentItemHashMap;
 
     @Inject
-    public MyRecentProvider(HashMap<String, RecentItem> recentItemHashMap, AppPref appPref) {
+    public MyRecentProvider(HashMap<MyCacheKey, RecentItem> recentItemHashMap, AppPref appPref) {
         this.appPref = appPref;
         this.recentItemHashMap = recentItemHashMap;
         load();
@@ -34,21 +35,21 @@ public class MyRecentProvider implements RecentProvider {
         allItems = appPref.loadRecentItems(); //it may take a while. rework with callback
         if (allItems != null) {
             for (RecentItem item : allItems) {
-                recentItemHashMap.put(item.getItemKey(), item);
+                recentItemHashMap.put(item.getMyCacheKey(), item);
             }
         }
     }
 
     @Override
     public void removeItem(RecentItem itemToRemove) {
-        recentItemHashMap.remove(itemToRemove.getItemKey());
+        recentItemHashMap.remove(itemToRemove.getMyCacheKey());
         appPref.saveItems(recentItemHashMap.values());
     }
 
     @Override
     public void addItem(RecentItem itemToAdd) {
-        Log.v("weatherApp", "MyRecentProvider addItem with key: " + itemToAdd.getItemKey() + ", location: " + itemToAdd.getLocationName());
-        recentItemHashMap.put(itemToAdd.getItemKey(), itemToAdd);
+        Log.v("weatherApp", "MyRecentProvider addItem " +itemToAdd.getFriendlyLocationName());
+        recentItemHashMap.put(itemToAdd.getMyCacheKey(), itemToAdd);
         appPref.saveItems(recentItemHashMap.values());
     }
 

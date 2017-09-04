@@ -1,6 +1,10 @@
 package com.sardox.weatherapp.model;
 
 
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.utils.WeatherForecast;
 import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
@@ -49,13 +53,12 @@ public class MainModelImpl implements MainModel {
 
 
 
-    @Override
-    public void getWeatherByCity(final String city) {
-        weatherProvider.getWeatherByCity(city, new Consumer<OpenWeatherForecast>() {
+    private void getWeatherByCity(final CityKey cityKey) {
+        weatherProvider.getWeatherByCity(cityKey.getCity(), new Consumer<OpenWeatherForecast>() {
             @Override
             public void onSuccess(OpenWeatherForecast openWeatherForecast) {
                 WeatherForecast weatherForecast = OpenWeatherForecastConverter.toMyWeatherForecast(openWeatherForecast);
-                weatherForecast.setSearch_key(city);
+                weatherForecast.setKey(cityKey);
                 weatherPresenterCallback.onWeatherReceived(weatherForecast);
             }
 
@@ -66,13 +69,12 @@ public class MainModelImpl implements MainModel {
         });
     }
 
-    @Override
-    public void getWeatherByZip(final String zip) {
-        weatherProvider.getWeatherByZip(zip, new Consumer<OpenWeatherForecast>() {
+    private void getWeatherByZip(final ZipKey zipKey) {
+        weatherProvider.getWeatherByZip(zipKey.getZip(), new Consumer<OpenWeatherForecast>() {
             @Override
             public void onSuccess(OpenWeatherForecast openWeatherForecast) {
                 WeatherForecast weatherForecast = OpenWeatherForecastConverter.toMyWeatherForecast(openWeatherForecast);
-                weatherForecast.setSearch_key(zip);
+                weatherForecast.setKey(zipKey);
                 weatherPresenterCallback.onWeatherReceived(weatherForecast);
 
             }
@@ -84,15 +86,14 @@ public class MainModelImpl implements MainModel {
         });
     }
 
-    @Override
-    public void getWeatherByLatLon(MyLocation location) {
+    private void getWeatherByLatLon(final LocationKey locationKey) {
         mainPresenterCallback.onWeatherRequestedFromRecent();// we need to notify  MainPresenter about new weather was fethced and switch tab to WeatherFragment
 
-        weatherProvider.getWeatherByLatLon(location, new Consumer<OpenWeatherForecast>() {
+        weatherProvider.getWeatherByLatLon(locationKey.getLocation(), new Consumer<OpenWeatherForecast>() {
             @Override
             public void onSuccess(OpenWeatherForecast openWeatherForecast) {
                 WeatherForecast weatherForecast = OpenWeatherForecastConverter.toMyWeatherForecast(openWeatherForecast);
-                weatherForecast.setSearch_key(weatherForecast.getLocationName());
+                weatherForecast.setKey(locationKey);
                 weatherPresenterCallback.onWeatherReceived(weatherForecast);
 
             }
@@ -117,13 +118,18 @@ public class MainModelImpl implements MainModel {
     @Override
     public void addItemToRecent(WeatherForecast weatherForecast) {
         RecentItem recentItem = new RecentItem();
-        recentItem.setLat(weatherForecast.getLat());
-        recentItem.setLon(weatherForecast.getLon());
-        recentItem.setItemKey(weatherForecast.getSearch_key());
+        recentItem.setMyCacheKey(weatherForecast.getKey());
         recentItem.setLastRequestedTimestamp(DateTime.now().getMillis());
-        recentItem.setLocationName(weatherForecast.getLocationName());
+        recentItem.setFriendlyLocationName(weatherForecast.getLocationName());
         recentProvider.addItem(recentItem);
         recentPresenterCallback.onNewRecentAdded(); // we need to notify RecentPresenter about new item to update its recycler view
+    }
+
+    @Override
+    public void getWeatherByKey(MyCacheKey key) {
+        if(key instanceof ZipKey) getWeatherByZip((ZipKey) key);
+        if(key instanceof CityKey) getWeatherByCity((CityKey) key);
+        if(key instanceof LocationKey) getWeatherByLatLon((LocationKey) key);
     }
 
     @Override

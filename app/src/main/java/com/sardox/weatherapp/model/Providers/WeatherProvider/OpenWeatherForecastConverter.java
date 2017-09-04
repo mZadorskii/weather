@@ -22,11 +22,11 @@ public class OpenWeatherForecastConverter {
         }
 
         if (openWeather.getName() != null) weatherForecast.setLocationName(openWeather.getName());
-        Coord coord = openWeather.getCoord();
-        if (coord != null) {
-            if (coord.getLat() != null) weatherForecast.setLat(coord.getLat());
-            if (coord.getLon() != null) weatherForecast.setLon(coord.getLon());
-        }
+//        Coord coord = openWeather.getCoord();
+//        if (coord != null) {
+//            if (coord.getLat() != null) weatherForecast.setLat(coord.getLat());
+//            if (coord.getLon() != null) weatherForecast.setLon(coord.getLon());
+//        }
 
         List<Weather> weatherList = openWeather.getWeather();
         if (!weatherList.isEmpty()) {

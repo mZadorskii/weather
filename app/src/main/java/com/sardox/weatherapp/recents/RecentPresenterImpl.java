@@ -58,7 +58,7 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
 
     @Override
     public void onRecentClicked(RecentItem clickedItem) {
-        mainModel.getWeatherByLatLon(new MyLocation(clickedItem.getLat(), clickedItem.getLon()));
+        mainModel.getWeatherByKey(clickedItem.getMyCacheKey());
     }
 
     @Override

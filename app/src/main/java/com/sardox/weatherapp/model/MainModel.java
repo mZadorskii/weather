@@ -1,6 +1,7 @@
 package com.sardox.weatherapp.model;
 
 
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.utils.WeatherForecast;
 import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
@@ -14,15 +15,14 @@ import java.util.List;
 
 public interface MainModel {
 
-    void getWeatherByCity(String city);
-    void getWeatherByZip(String zip);
-    void getWeatherByLatLon(MyLocation location);
 
     void getRecentItems(Consumer<List<RecentItem>> callback);
 
     void getMostRecentItem(Consumer<RecentItem> callback);
 
     void addItemToRecent(WeatherForecast weatherForecast);
+
+    void getWeatherByKey(MyCacheKey key);
 
     void setupMainPresenterCallback(MainPresenterCallback callback);
 

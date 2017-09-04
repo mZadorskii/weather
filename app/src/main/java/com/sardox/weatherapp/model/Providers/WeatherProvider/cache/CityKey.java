@@ -5,6 +5,10 @@ package com.sardox.weatherapp.model.Providers.WeatherProvider.cache;
  */
 
 public class CityKey implements MyCacheKey {
+    public String getCity() {
+        return city;
+    }
+
     private String city;
 
     public CityKey(String city) {

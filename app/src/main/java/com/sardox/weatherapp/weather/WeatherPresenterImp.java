@@ -2,6 +2,9 @@ package com.sardox.weatherapp.weather;
 
 import android.util.Log;
 
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.utils.Utils;
 import com.sardox.weatherapp.utils.WeatherForecast;
@@ -32,7 +35,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
     @Override
     public void onLocationReceived(MyLocation location) {
         view.showLoading();
-        mainModel.getWeatherByLatLon(location);
+        mainModel.getWeatherByKey(new LocationKey(location));
     }
 
     @Override
@@ -47,7 +50,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
         mainModel.getMostRecentItem(new Consumer<RecentItem>() {
             @Override
             public void onSuccess(RecentItem item) {
-                if (item != null) mainModel.getWeatherByLatLon(new MyLocation(item.getLat(), item.getLon()));
+                if (item != null) mainModel.getWeatherByKey(item.getMyCacheKey());
             }
 
             @Override
@@ -78,7 +81,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
             @Override
             public void onLocationReceived(MyLocation location) {
                 Log.v("weatherApp", TAG + " onLocationReceived");
-                mainModel.getWeatherByLatLon(location);
+                mainModel.getWeatherByKey(new LocationKey(location));
             }
 
             @Override
@@ -112,12 +115,12 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
             case CITY:
                 Log.v("weatherApp", "getWeatherBy CITY");
                 view.showLoading();
-                mainModel.getWeatherByCity(user_input);
+                mainModel.getWeatherByKey(new CityKey(user_input));
                 break;
             case ZIP:
                 Log.v("weatherApp", "getWeatherBy ZIP");
                 view.showLoading();
-                mainModel.getWeatherByZip(user_input);
+                mainModel.getWeatherByKey(new ZipKey(user_input));
                 break;
             case UNKNOWN:
                 Log.v("weatherApp", "getWeatherBy UNKNOWN");

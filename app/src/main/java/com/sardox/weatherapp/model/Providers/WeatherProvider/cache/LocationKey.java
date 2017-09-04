@@ -7,6 +7,10 @@ import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
  */
 
 public class LocationKey implements MyCacheKey {
+    public MyLocation getLocation() {
+        return location;
+    }
+
     private MyLocation location;
 
     public LocationKey(MyLocation location) {

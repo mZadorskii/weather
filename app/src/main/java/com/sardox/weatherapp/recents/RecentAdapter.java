@@ -54,7 +54,7 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.MyRecentIt
     @Override
     public void onBindViewHolder(final MyRecentItemHolder holder, int position) {
         if (holder.item_location != null)
-            holder.item_location.setText(recents.get(position).getLocationName());
+            holder.item_location.setText(recents.get(position).getFriendlyLocationName() + " searched by " + recents.get(position).getMyCacheKey().getClass().getSimpleName());
         final RecentItem item = recents.get(position);
         if (holder.itemView != null) holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
