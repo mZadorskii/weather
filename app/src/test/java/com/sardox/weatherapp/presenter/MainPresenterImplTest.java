@@ -24,6 +24,7 @@ public class MainPresenterImplTest {
 
     @Before
     public void setUp() throws Exception {
+
         mainModel = mock(MainModel.class);
         mainView = mock(MainView.class);
     }

@@ -24,7 +24,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
     private static final String TAG = "WeatherPresenterImp";
     private WeatherView view;
     private MainModel mainModel;
-    private Utils.TEMPERATURE selectedTempUnit = Utils.TEMPERATURE.Fahrenheit;  //i can let user chose units later
+    private final Utils.TEMPERATURE selectedTempUnit = Utils.TEMPERATURE.Fahrenheit;  //i can let user chose units later. for now - final
 
 
     @Inject
@@ -45,7 +45,6 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onViewPrepared() {
-        Log.v("weatherApp", TAG + " onViewPrepared");
         mainModel.setupWeatherPresenterCallback(this);
         mainModel.getMostRecentItem(new Consumer<RecentItem>() {
             @Override
@@ -61,21 +60,17 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onAttach(WeatherView view) {
-        Log.v("weatherApp", TAG + " onAttach");
         this.view = view;
     }
 
     @Override
     public void onDetach() {
-        Log.v("weatherApp", TAG + " onDetach");
         this.view = null;
          //mainModel.setupWeatherPresenterCallback(null);
     }
 
     @Override
     public void onLocationPermissionGranted() {
-        Log.v("weatherApp", TAG + " onLocationPermissionGranted");
-
         view.showLoading();
         mainModel.getUserLocation(new LocationCallback() {
             @Override
@@ -113,17 +108,14 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
         switch (Utils.validateInput(user_input)) {
             case CITY:
-                Log.v("weatherApp", "getWeatherBy CITY");
                 view.showLoading();
                 mainModel.getWeatherByKey(new CityKey(user_input));
                 break;
             case ZIP:
-                Log.v("weatherApp", "getWeatherBy ZIP");
                 view.showLoading();
                 mainModel.getWeatherByKey(new ZipKey(user_input));
                 break;
             case UNKNOWN:
-                Log.v("weatherApp", "getWeatherBy UNKNOWN");
                 view.showMessage("Please make sure you entered correct ZIP/City");
                 break;
         }
@@ -137,7 +129,6 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onWeatherReceived(WeatherForecast weatherForecast) {
-        Log.v("weatherApp", "Weather received");
         weatherForecast.setTemp(Utils.convertTemp(weatherForecast.getTemp(), selectedTempUnit));
         mainModel.addItemToRecent(weatherForecast);
         view.hideLoading();
