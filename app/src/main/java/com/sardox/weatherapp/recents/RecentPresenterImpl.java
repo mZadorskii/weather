@@ -26,24 +26,27 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
 
     @Override
     public void onViewPrepared() {
-        //Log.v("weatherApp", TAG + " onViewPrepared");
         view.showLoading();
         mainModel.setupRecentCallbacks(this);
         loadItems();
+    }
+
+    public boolean isViewAttached() {
+        return view != null;
     }
 
     private void loadItems(){
         mainModel.getRecentItems(new Consumer<List<RecentItem>>() {
             @Override
             public void onSuccess(List<RecentItem> items) {
-                //Log.v("weatherApp", TAG + " onViewPrepared onSuccess");
+                if (!isViewAttached()) return;
                 view.hideLoading();
                 view.updateList(items);
             }
 
             @Override
             public void onFailed(String error) {
-                //Log.v("weatherApp", TAG + " onViewPrepared onFailed");
+                if (!isViewAttached()) return;
                 view.hideLoading();
                 view.showMessage(error);
             }
@@ -51,7 +54,6 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
     }
     @Override
     public void onAttach(RecentView view) {
-//        Log.v("weatherApp", TAG + " onAttach");
         this.view = view;
     }
 
@@ -62,7 +64,6 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
 
     @Override
     public void onDetach() {
-        Log.v("weatherApp", TAG + " onDetach");
         this.view = null;
     }
 

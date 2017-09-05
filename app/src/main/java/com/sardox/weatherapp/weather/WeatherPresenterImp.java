@@ -40,7 +40,12 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onNetworkProviderDisabled() {
+        if (!isViewAttached()) return;
         view.onNetworkProviderDisabled();
+    }
+
+    public boolean isViewAttached() {
+        return view != null;
     }
 
     @Override
@@ -71,16 +76,16 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onLocationPermissionGranted() {
-        view.showLoading();
+        if (isViewAttached()) view.showLoading();
         mainModel.getUserLocation(new LocationCallback() {
             @Override
             public void onLocationReceived(MyLocation location) {
-                Log.v("weatherApp", TAG + " onLocationReceived");
                 mainModel.getWeatherByKey(new LocationKey(location));
             }
 
             @Override
             public void onProviderDisabled() {
+                if (!isViewAttached()) return;
                 view.hideLoading();
                 view.onNetworkProviderDisabled();
             }
@@ -89,22 +94,24 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onLocationPermissionDenied() {
+        if (!isViewAttached()) return;
         view.askUserToEnablePermissions();
     }
 
     @Override
     public void getWeatherWithMyLocation() {
+        if (!isViewAttached()) return;
         view.checkPermissions();
     }
 
     @Override
     public void onNetworkError(String error) {
+        if (!isViewAttached()) return;
         view.showMessage("onNetworkError" + error);
     }
 
     @Override
     public void getWeatherByUserInput(final String user_input) {
-
         switch (Utils.validateInput(user_input)) {
             case CITY:
                 view.showLoading();
@@ -122,6 +129,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
     @Override
     public void onWeatherReceiveError(String error) {
+        if (!isViewAttached()) return;
         view.hideLoading();
         view.showMessage(error);
     }
@@ -130,6 +138,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
     public void onWeatherReceived(WeatherForecast weatherForecast) {
         weatherForecast.setTemp(Utils.convertTemp(weatherForecast.getTemp(), selectedTempUnit));
         mainModel.addItemToRecent(weatherForecast);
+        if (!isViewAttached()) return;
         view.hideLoading();
         view.updateWeather(weatherForecast);
     }

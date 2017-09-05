@@ -19,10 +19,6 @@ public class MainPresenterImpl implements MainPresenter, MainPresenterCallback{
         return view != null;
     }
 
-    public MainModel getDataManager() {
-        return mainModel;
-    }
-
     @Override
     public void attachView(MainView view) {
         this.view = view;
@@ -38,6 +34,7 @@ public class MainPresenterImpl implements MainPresenter, MainPresenterCallback{
 
     @Override
     public void onWeatherRequestedFromRecent() {
+        if (!isViewAttached()) return;
         this.view.showWeatherTab();
     }
 
