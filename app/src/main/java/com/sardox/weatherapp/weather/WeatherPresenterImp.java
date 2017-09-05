@@ -81,7 +81,6 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
 
             @Override
             public void onProviderDisabled() {
-                Log.v("weatherApp", "onProviderDisabled123 NEVER CALLED ***************************************");
                 view.hideLoading();
                 view.onNetworkProviderDisabled();
             }
@@ -116,7 +115,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
                 mainModel.getWeatherByKey(new ZipKey(user_input));
                 break;
             case UNKNOWN:
-                view.showMessage("Please make sure you entered correct ZIP/City");
+                view.showMessage("Please make sure you entered correct ZIP/City");  // todo replace with @StringRes int stringId
                 break;
         }
     }

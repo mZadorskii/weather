@@ -10,6 +10,6 @@ interface WeatherView {
     void checkPermissions( );
     void askUserToEnablePermissions( );
     void onNetworkProviderDisabled();
-    void onError(String message);
-    void showMessage(String message);
+    void onError(String message);           // todo replace with @StringRes int stringId
+    void showMessage(String message);       // todo replace with @StringRes int stringId
 }
