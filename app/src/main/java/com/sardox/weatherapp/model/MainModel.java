@@ -31,4 +31,6 @@ public interface MainModel {
     void setupWeatherPresenterCallback(WeatherPresenterCallback weatherPresenterCallback);
 
     void getUserLocation(LocationCallback locationCallback);
+
+    void removeItems(List<MyCacheKey> selectedItems);
 }

@@ -41,8 +41,10 @@ public class MyRecentProvider implements RecentProvider {
     }
 
     @Override
-    public void removeItem(RecentItem itemToRemove) {
-        recentItemHashMap.remove(itemToRemove.getMyCacheKey());
+    public void removeItems(List<MyCacheKey> selectedItems){
+        for (MyCacheKey key : selectedItems){
+            recentItemHashMap.remove(key);
+        }
         appPref.saveItems(recentItemHashMap.values());
     }
 

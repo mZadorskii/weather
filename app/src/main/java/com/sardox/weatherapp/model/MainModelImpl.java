@@ -131,6 +131,11 @@ public class MainModelImpl implements MainModel {
     }
 
     @Override
+    public void removeItems(List<MyCacheKey> selectedItems) {
+        recentProvider.removeItems(selectedItems);
+    }
+
+    @Override
     public void setupMainPresenterCallback(MainPresenterCallback callback) {
         mainPresenterCallback = callback;
     }

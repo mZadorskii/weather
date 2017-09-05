@@ -2,6 +2,7 @@ package com.sardox.weatherapp.recents;
 
 import android.util.Log;
 
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.model.MainModel;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
@@ -33,6 +34,12 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
 
     public boolean isViewAttached() {
         return view != null;
+    }
+
+    @Override
+    public void removeItems(List<MyCacheKey> listOfSelectedItems) {
+        mainModel.removeItems(listOfSelectedItems);
+        loadItems();
     }
 
     private void loadItems(){
