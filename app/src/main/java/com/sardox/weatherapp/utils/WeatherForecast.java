@@ -4,9 +4,13 @@ package com.sardox.weatherapp.utils;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 
 public class WeatherForecast {
-    //private String search_key = "";
     private String locationName = "";
     private MyCacheKey key;
+
+    private String weather_description = "";
+    private float temp = 0;
+    private float humidity = 0;
+
 
     public MyCacheKey getKey() {
         return key;
@@ -16,13 +20,8 @@ public class WeatherForecast {
         this.key = key;
     }
 
-    private String weather_description = "";
-    private float temp = 0;
-    private float humidity = 0;
-
     public WeatherForecast() {
     }
-
 
     public String getLocationName() {
         return locationName;

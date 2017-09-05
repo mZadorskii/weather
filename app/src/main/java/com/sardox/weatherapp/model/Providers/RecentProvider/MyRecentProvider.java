@@ -48,7 +48,7 @@ public class MyRecentProvider implements RecentProvider {
 
     @Override
     public void addItem(RecentItem itemToAdd) {
-        Log.v("weatherApp", "MyRecentProvider addItem " +itemToAdd.getFriendlyLocationName());
+        //Log.v("weatherApp", "MyRecentProvider addItem " +itemToAdd.getFriendlyLocationName());
         recentItemHashMap.put(itemToAdd.getMyCacheKey(), itemToAdd);
         appPref.saveItems(recentItemHashMap.values());
     }

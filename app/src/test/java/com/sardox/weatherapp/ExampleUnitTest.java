@@ -22,26 +22,4 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    @Test
-    public void printing() throws Exception {
-        float a = 45.23456f;
-        float b = 45.00f;
-
-        System.out.println(a);
-        System.out.println(b);
-
-        System.out.println((int) a);
-        System.out.println((int) b);
-
-        String aa = String.valueOf(a);
-        String bb = String.valueOf(b);
-
-        System.out.println(aa);
-        System.out.println(bb);
-
-        System.out.println("DecimalFormat");
-        DecimalFormat df = new DecimalFormat("#");
-        String aaa = df.format(a);
-        System.out.println(aaa);
-    }
 }

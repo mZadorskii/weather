@@ -6,13 +6,11 @@ import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 public interface RecentPresenter {
 
     void onViewPrepared();
-   //void updateRepo(List<OpenSourceResponse.Repo> repoList);
-   void onAttach(RecentView view);
+
+    void onAttach(RecentView view);
 
     void onDetach();
 
     void onRecentClicked(RecentItem clickedItem);
-
-    void onNetworkError(String error);
 
 }

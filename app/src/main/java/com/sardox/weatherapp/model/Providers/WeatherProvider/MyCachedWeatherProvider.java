@@ -34,10 +34,10 @@ public class MyCachedWeatherProvider implements WeatherProvider {
 
     @Override
     public void getWeatherByCity(final String city, final Consumer<OpenWeatherForecast> consumer) {
-        Log.v("weatherApp", "getWeatherByCity for: " + city);
+        //Log.v("weatherApp", "getWeatherByCity for: " + city);
         OpenWeatherForecast cachedOpenWeatherForecast = weatherCache.getIfPresent(new CityKey(city));
         if (cachedOpenWeatherForecast != null) {
-            Log.v("weatherApp", "getWeatherByCity is retrieved from cache");
+            //Log.v("weatherApp", "getWeatherByCity is retrieved from cache");
             consumer.onSuccess(cachedOpenWeatherForecast);
             return;
         }
@@ -45,7 +45,8 @@ public class MyCachedWeatherProvider implements WeatherProvider {
             @Override
             public void onResponse
                     (@NonNull Call<OpenWeatherForecast> call, @NonNull Response<OpenWeatherForecast> response) {
-                Log.v("weatherApp", "getWeatherByCity onResponse");
+
+                //Log.v("weatherApp", "getWeatherByCity onResponse");
                 if (response.isSuccessful()) {
                     OpenWeatherForecast receivedForecast = response.body();
                     if (receivedForecast != null) {
@@ -54,13 +55,13 @@ public class MyCachedWeatherProvider implements WeatherProvider {
                         return;
                     }
                 }
-                Log.v("weatherApp", "getWeatherByCity onResponse is not Successful");
+                //Log.v("weatherApp", "getWeatherByCity onResponse is not Successful");
                 consumer.onFailed("Unable to get weather.."); //TODO REWORK
             }
 
             @Override
             public void onFailure(@NonNull Call<OpenWeatherForecast> call, @NonNull Throwable t) {
-                Log.v("weatherApp", "getWeatherByCity onFailure");
+                //Log.v("weatherApp", "getWeatherByCity onFailure");
                 consumer.onFailed("Unable to connect to weather service.."); //TODO REWORK
             }
         });
@@ -104,7 +105,7 @@ public class MyCachedWeatherProvider implements WeatherProvider {
 
     @Override
     public void getWeatherByLatLon(final MyLocation location, final Consumer<OpenWeatherForecast> consumer) {
-        Log.v("weatherApp", "getWeatherByLatLon for: " + location.getLat() + ", " + location.getLon());
+        //Log.v("weatherApp", "getWeatherByLatLon for: " + location.getLat() + ", " + location.getLon());
         OpenWeatherForecast cachedOpenWeatherForecast = weatherCache.getIfPresent(new LocationKey(location));
         if (cachedOpenWeatherForecast != null) {
             Log.v("weatherApp", "getWeatherByLatLon is retrieved from cache");
@@ -115,7 +116,7 @@ public class MyCachedWeatherProvider implements WeatherProvider {
             @Override
             public void onResponse
                     (@NonNull Call<OpenWeatherForecast> call, @NonNull Response<OpenWeatherForecast> response) {
-                Log.v("weatherApp", "getWeatherByLatLon onResponse");
+                //Log.v("weatherApp", "getWeatherByLatLon onResponse");
                 if (response.isSuccessful()) {
                     OpenWeatherForecast receivedForecast = response.body();
                     if (receivedForecast != null) {
@@ -125,13 +126,13 @@ public class MyCachedWeatherProvider implements WeatherProvider {
                     }
                 }
 
-                Log.v("weatherApp", "getWeatherByLatLon onResponse is not Successful");
+                //Log.v("weatherApp", "getWeatherByLatLon onResponse is not Successful");
                 consumer.onFailed("Unable to get weather.."); //TODO REWORK
             }
 
             @Override
             public void onFailure(@NonNull Call<OpenWeatherForecast> call, @NonNull Throwable t) {
-                Log.v("weatherApp", "getWeatherByZip onFailure");
+                //Log.v("weatherApp", "getWeatherByZip onFailure");
                 consumer.onFailed("Unable to connect to weather service.."); //TODO REWORK
             }
         });

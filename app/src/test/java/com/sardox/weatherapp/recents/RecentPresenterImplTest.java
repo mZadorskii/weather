@@ -49,35 +49,8 @@ public class RecentPresenterImplTest {
 
     @Test
     public void onViewPrepared() throws Exception {
-       // mainModel.setupRecentCallbacks(recentPresenter);
-        List<RecentItem> items = new ArrayList<>();
-        items.add(new RecentItem());
-
-        doReturn(items).when(mainModel).getRecentItems(new Consumer<List<RecentItem>>() {
-            @Override
-            public void onSuccess(List<RecentItem> var1) {
-
-            }
-
-            @Override
-            public void onFailed(String error) {
-
-            }
-        });
         recentPresenter.onViewPrepared();
         verify(recentView).showLoading();
-
-//        verify(mainModel).getRecentItems(new Consumer<List<RecentItem>>() {
-//            @Override
-//            public void onSuccess(List<RecentItem> var1) {
-//
-//            }
-//
-//            @Override
-//            public void onFailed(String error) {
-//
-//            }
-//        });
     }
 
 }

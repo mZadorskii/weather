@@ -34,6 +34,7 @@ public class MainModelImpl implements MainModel {
     private MainPresenterCallback mainPresenterCallback;
     private RecentPresenterCallback recentPresenterCallback;
     private WeatherPresenterCallback weatherPresenterCallback;
+
     private final WeatherProvider weatherProvider;
     private final LocationProvider locationProvider;
     private final RecentProvider recentProvider;
@@ -50,8 +51,6 @@ public class MainModelImpl implements MainModel {
     public void setupWeatherPresenterCallback(WeatherPresenterCallback weatherPresenterCallback) {
         this.weatherPresenterCallback = weatherPresenterCallback;
     }
-
-
 
     private void getWeatherByCity(final CityKey cityKey) {
         weatherProvider.getWeatherByCity(cityKey.getCity(), new Consumer<OpenWeatherForecast>() {
@@ -87,8 +86,6 @@ public class MainModelImpl implements MainModel {
     }
 
     private void getWeatherByLatLon(final LocationKey locationKey) {
-        mainPresenterCallback.onWeatherRequestedFromRecent();// we need to notify  MainPresenter about new weather was fethced and switch tab to WeatherFragment
-
         weatherProvider.getWeatherByLatLon(locationKey.getLocation(), new Consumer<OpenWeatherForecast>() {
             @Override
             public void onSuccess(OpenWeatherForecast openWeatherForecast) {
@@ -127,6 +124,7 @@ public class MainModelImpl implements MainModel {
 
     @Override
     public void getWeatherByKey(MyCacheKey key) {
+        mainPresenterCallback.onWeatherRequestedFromRecent();//  todo fix. need a callback to switch
         if(key instanceof ZipKey) getWeatherByZip((ZipKey) key);
         if(key instanceof CityKey) getWeatherByCity((CityKey) key);
         if(key instanceof LocationKey) getWeatherByLatLon((LocationKey) key);

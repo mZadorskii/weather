@@ -19,7 +19,6 @@ public class RecentItem {
         this.friendlyLocationName = friendlyLocationName;
     }
 
-
     public long getLastRequestedTimestamp() {
         return lastRequestedTimestamp;
     }
@@ -28,11 +27,28 @@ public class RecentItem {
         this.lastRequestedTimestamp = lastRequestedTimestamp;
     }
 
+
     public MyCacheKey getMyCacheKey() {
         return myCacheKey;
     }
 
     public void setMyCacheKey(MyCacheKey myCacheKey) {
         this.myCacheKey = myCacheKey;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RecentItem item = (RecentItem) o;
+
+        return myCacheKey != null ? myCacheKey.equals(item.myCacheKey) : item.myCacheKey == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return myCacheKey != null ? myCacheKey.hashCode() : 0;
     }
 }

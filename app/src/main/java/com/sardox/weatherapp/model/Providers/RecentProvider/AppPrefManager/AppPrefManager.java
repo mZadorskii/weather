@@ -2,6 +2,7 @@ package com.sardox.weatherapp.model.Providers.RecentProvider.AppPrefManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -45,25 +46,30 @@ public class AppPrefManager implements AppPref {
                 .create();
     }
 
-
-    @Override
-    public List<RecentItem> loadRecentItems() {
-        String itemsInJson = mPrefs.getString(PREF_KEY_USER_RECENT_ITEMS , null);
-
+    public List<RecentItem> jsonToRecents(String itemsInJson){
         List<RecentItem> recentItems = new ArrayList<>();
         Type type = new TypeToken<List<RecentItem>>() {}.getType();
         recentItems = gson.fromJson(itemsInJson, type);
         if (recentItems != null) {
-            Log.v("weatherApp", "AppPrefManager loaded: " + recentItems.size()+ " items");
+           // Log.v("weatherApp", "AppPrefManager loaded: " + recentItems.size()+ " items");
         }
-        return recentItems;
+        return  recentItems;
+    }
+
+    public String recentItemsToJson(Collection<RecentItem> items){
+        return  gson.toJson(items);
+    }
+
+    @Override
+    public List<RecentItem> loadRecentItems() {
+        String itemsInJson = mPrefs.getString(PREF_KEY_USER_RECENT_ITEMS , null);
+        return jsonToRecents(itemsInJson);
     }
 
     @Override
     public void saveItems(Collection<RecentItem> items) {
-        String itemsInJson = gson.toJson(items);
-        mPrefs.edit().putString(PREF_KEY_USER_RECENT_ITEMS ,itemsInJson).apply();
-        Log.v("weatherApp", "AppPrefManager saved: " + items.size() + " items");
+        mPrefs.edit().putString(PREF_KEY_USER_RECENT_ITEMS ,recentItemsToJson(items)).apply();
+        //Log.v("weatherApp", "AppPrefManager saved: " + items.size() + " items");
     }
 
 

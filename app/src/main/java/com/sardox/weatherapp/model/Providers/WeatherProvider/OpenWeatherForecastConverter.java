@@ -1,7 +1,6 @@
 package com.sardox.weatherapp.model.Providers.WeatherProvider;
 
 import com.sardox.weatherapp.utils.WeatherForecast;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.Coord;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.Main;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.Weather;
@@ -22,11 +21,6 @@ public class OpenWeatherForecastConverter {
         }
 
         if (openWeather.getName() != null) weatherForecast.setLocationName(openWeather.getName());
-//        Coord coord = openWeather.getCoord();
-//        if (coord != null) {
-//            if (coord.getLat() != null) weatherForecast.setLat(coord.getLat());
-//            if (coord.getLon() != null) weatherForecast.setLon(coord.getLon());
-//        }
 
         List<Weather> weatherList = openWeather.getWeather();
         if (!weatherList.isEmpty()) {

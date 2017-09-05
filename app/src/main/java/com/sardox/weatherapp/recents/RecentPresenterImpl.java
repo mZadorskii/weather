@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.model.MainModel;
-import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 
 import java.util.List;
@@ -65,11 +64,6 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
     public void onDetach() {
         Log.v("weatherApp", TAG + " onDetach");
         this.view = null;
-    }
-
-    @Override
-    public void onNetworkError(String error) {
-
     }
 
     @Override

@@ -36,7 +36,6 @@ public class MyLocationProvider implements LocationProvider, LocationListener {
 
         Location location = getLastKnownLocation();
 
-
         if (location == null) {
             try {
                 mlocManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null);
@@ -47,7 +46,6 @@ public class MyLocationProvider implements LocationProvider, LocationListener {
             onLocationChanged(location);
         }
     }
-
 
     private Location getLastKnownLocation() {
         try {
