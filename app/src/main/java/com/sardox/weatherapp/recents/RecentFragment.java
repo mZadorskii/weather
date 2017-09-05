@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.sardox.weatherapp.Dagger.ActivityComponent;
-import com.sardox.weatherapp.main.MainActivity;
 import com.sardox.weatherapp.R;
+import com.sardox.weatherapp.main.MainActivity;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class RecentFragment extends Fragment implements RecentView, RecentAdapter.Callback{
+public class RecentFragment extends Fragment implements RecentView, RecentAdapter.Callback {
 
     private MainActivity activity;
     private static final String TAG = "RecentFragment";
@@ -84,7 +84,7 @@ public class RecentFragment extends Fragment implements RecentView, RecentAdapte
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration( new DividerItemDecoration(getContext(),
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
                 mLayoutManager.getOrientation()));
         mRecyclerView.setAdapter(recentAdapter);
         mPresenter.onViewPrepared();
@@ -126,13 +126,13 @@ public class RecentFragment extends Fragment implements RecentView, RecentAdapte
 
     @Override
     public void onError(String message) {
-        Toast.makeText(getContext(),"Error: " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Error: " + message, Toast.LENGTH_SHORT).show();
         recentAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(getContext(),"message: " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "message: " + message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

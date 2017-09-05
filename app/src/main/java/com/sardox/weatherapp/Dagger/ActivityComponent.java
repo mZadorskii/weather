@@ -12,6 +12,8 @@ import dagger.Component;
 @Component(modules = ActivityModule.class, dependencies = AppComponent.class)
 public interface ActivityComponent {
     void inject(MainActivity activity);
+
     void inject(WeatherFragment fragment);
+
     void inject(RecentFragment fragment);
 }

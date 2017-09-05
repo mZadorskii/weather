@@ -5,7 +5,7 @@ import com.sardox.weatherapp.model.MainModel;
 
 import javax.inject.Inject;
 
-public class MainPresenterImpl implements MainPresenter, MainPresenterCallback{
+public class MainPresenterImpl implements MainPresenter, MainPresenterCallback {
     private static final String TAG = "MainPresenterImpl";
     private MainView view;
     private MainModel mainModel;

@@ -1,8 +1,6 @@
 package com.sardox.weatherapp.model.Providers.RecentProvider;
 
 
-import android.util.Log;
-
 import com.sardox.weatherapp.model.Providers.RecentProvider.AppPrefManager.AppPref;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 
@@ -31,7 +29,7 @@ public class MyRecentProvider implements RecentProvider {
     @Override
     public void load() {
         recentItemHashMap.clear();
-        List<RecentItem> allItems = new ArrayList<>();
+        List<RecentItem> allItems;
         allItems = appPref.loadRecentItems(); //it may take a while. rework with callback
         if (allItems != null) {
             for (RecentItem item : allItems) {

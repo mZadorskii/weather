@@ -59,7 +59,7 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.MyRecentIt
         if (holder.itemView != null) holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            mCallback.onRecentClicked(item);
+                mCallback.onRecentClicked(item);
             }
         });
     }

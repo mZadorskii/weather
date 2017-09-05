@@ -6,7 +6,7 @@ import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 public class RecentItem {
     private MyCacheKey myCacheKey;
     private String friendlyLocationName; // ==user friendly friendlyLocationName
-    private long lastRequestedTimestamp=0;
+    private long lastRequestedTimestamp = 0;
 
     public RecentItem() {
     }

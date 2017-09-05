@@ -1,7 +1,5 @@
 package com.sardox.weatherapp.model.Providers.WeatherProvider;
 
-import android.support.design.widget.AppBarLayout;
-
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 
 import retrofit2.Call;
@@ -13,12 +11,13 @@ import retrofit2.http.Query;
  */
 
 public class OpenWeatherMockService {
-    static final class MockOpenWeatherServie implements OpenWeatherService{
+    static final class MockOpenWeatherServie implements OpenWeatherService {
         private final OpenWeatherForecast zip = new OpenWeatherForecast();
 
-        MockOpenWeatherServie(){
+        MockOpenWeatherServie() {
             zip.setName("zip");
         }
+
         @Override
 
         public Call<OpenWeatherForecast> getWeatherByZIP(@Query("zip") String zip_code_and_county_code, @Query("APPID") String APPID) {

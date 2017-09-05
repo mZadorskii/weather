@@ -30,7 +30,7 @@ public class MyLocationProvider implements LocationProvider, LocationListener {
      */
     @Override
     public void getUserLocation(LocationCallback locationCallback) {
-        this.locationCallback=locationCallback;
+        this.locationCallback = locationCallback;
         if (mlocManager == null)
             mlocManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -59,7 +59,7 @@ public class MyLocationProvider implements LocationProvider, LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        if (locationCallback!=null) {
+        if (locationCallback != null) {
             locationCallback.onLocationReceived(new MyLocation(location.getLatitude(), location.getLongitude()));
             mlocManager.removeUpdates(this);
             locationCallback = null;
@@ -75,13 +75,15 @@ public class MyLocationProvider implements LocationProvider, LocationListener {
     public void onProviderEnabled(String s) {
 
     }
+
     private boolean isNetworkProviderEnabled() {
         return mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
     @Override
     public void onProviderDisabled(String s) {
         if (!isNetworkProviderEnabled()) {
-            if (locationCallback!=null) locationCallback.onProviderDisabled();
+            if (locationCallback != null) locationCallback.onProviderDisabled();
         }
     }
 }

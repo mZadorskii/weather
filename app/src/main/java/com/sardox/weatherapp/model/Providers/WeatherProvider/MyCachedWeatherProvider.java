@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.common.cache.Cache;
-import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
+import com.sardox.weatherapp.utils.Consumer;
 
 import javax.inject.Inject;
 

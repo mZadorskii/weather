@@ -6,7 +6,8 @@ package com.sardox.weatherapp.model.Providers.LocationProvider;
 
 public interface LocationCallback {
 
-        void onLocationReceived(MyLocation location);
-        void onProviderDisabled();
+    void onLocationReceived(MyLocation location);
+
+    void onProviderDisabled();
 
 }

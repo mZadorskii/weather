@@ -3,12 +3,13 @@ package com.sardox.weatherapp.model.Providers.WeatherProvider;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
-import com.sardox.weatherapp.utils.Consumer;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
+import com.sardox.weatherapp.utils.Consumer;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,10 +19,13 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
+
 import java.util.concurrent.TimeUnit;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyDouble;
@@ -94,6 +98,7 @@ public class MyCachedWeatherProviderTest {
         assertNotNull(weatherCache.getIfPresent(zipkey));
         assertEquals(weatherCache.getIfPresent(zipkey).getName(), openWeatherForecastName);
     }
+
     @Test
     public void getWeatherByZipWasCalledInWeatherService() {
         Consumer<OpenWeatherForecast> other = mock(Consumer.class);
@@ -133,6 +138,7 @@ public class MyCachedWeatherProviderTest {
         assertNotNull(weatherCache.getIfPresent(cityKey));
         assertEquals(weatherCache.getIfPresent(cityKey).getName(), openWeatherForecastName);
     }
+
     @Test
     public void getWeatherByCityWasCalledInWeatherService() {
         Consumer<OpenWeatherForecast> other = mock(Consumer.class);
@@ -146,7 +152,7 @@ public class MyCachedWeatherProviderTest {
     @Test
     public void getWeatherByLatInsertedToCacheTest() {
         String openWeatherForecastName = "test_forecast";
-        MyLocation location = new MyLocation(10,20);
+        MyLocation location = new MyLocation(10, 20);
         LocationKey locationKey = new LocationKey(location);
 
         OpenWeatherForecast o = new OpenWeatherForecast();
@@ -165,19 +171,19 @@ public class MyCachedWeatherProviderTest {
         }).when(call).enqueue(ArgumentMatchers.<Callback>any());
 
 
-        when(openWeatherService.getWeatherLatLon(anyDouble(),anyDouble(), ArgumentMatchers.<String>any())).thenReturn(call);
+        when(openWeatherService.getWeatherLatLon(anyDouble(), anyDouble(), ArgumentMatchers.<String>any())).thenReturn(call);
         myCachedWeatherProvider.getWeatherByLatLon(locationKey.getLocation(), other);
 
         assertNotNull(weatherCache.getIfPresent(locationKey));
         assertEquals(weatherCache.getIfPresent(locationKey).getName(), openWeatherForecastName);
     }
+
     @Test
     public void getWeatherByLatWasCalledInWeatherService() {
-        Consumer<OpenWeatherForecast> other = mock(Consumer.class);
         Call<OpenWeatherForecast> call = mock(Call.class);
 
         when(openWeatherService.getWeatherLatLon(anyDouble(), anyDouble(), anyString())).thenReturn(call);
-        myCachedWeatherProvider.getWeatherByLatLon(new MyLocation(0,0), null);
+        myCachedWeatherProvider.getWeatherByLatLon(new MyLocation(0, 0), null);
         verify(openWeatherService.getWeatherLatLon(anyDouble(), anyDouble(), anyString()), times(1)).enqueue(ArgumentMatchers.<Callback>any());
     }
 }

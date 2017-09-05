@@ -23,6 +23,6 @@ public interface OpenWeatherService {
 
     @GET("weather")
     Call<OpenWeatherForecast> getWeatherLatLon(@Query("lat") double lat,
-                                        @Query("lon") double lon,
-                                        @Query("APPID") String APPID);
+                                               @Query("lon") double lon,
+                                               @Query("APPID") String APPID);
 }

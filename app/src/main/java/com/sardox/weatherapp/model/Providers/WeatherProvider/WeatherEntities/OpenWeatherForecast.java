@@ -1,9 +1,10 @@
-
 package com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 // i genereated it with http://www.jsonschema2pojo.org/
 public class OpenWeatherForecast {
 

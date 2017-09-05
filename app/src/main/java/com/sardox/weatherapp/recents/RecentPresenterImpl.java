@@ -1,10 +1,8 @@
 package com.sardox.weatherapp.recents;
 
-import android.util.Log;
-
-import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.model.MainModel;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
+import com.sardox.weatherapp.utils.Consumer;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import javax.inject.Inject;
  * Created by sardox on 9/2/2017.
  */
 
-public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCallback{
+public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCallback {
     private static final String TAG = "RecentPresenterImpl";
     private RecentView view;
     private MainModel mainModel;
@@ -35,7 +33,7 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
         return view != null;
     }
 
-    private void loadItems(){
+    private void loadItems() {
         mainModel.getRecentItems(new Consumer<List<RecentItem>>() {
             @Override
             public void onSuccess(List<RecentItem> items) {
@@ -52,6 +50,7 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
             }
         });
     }
+
     @Override
     public void onAttach(RecentView view) {
         this.view = view;
@@ -69,6 +68,6 @@ public class RecentPresenterImpl implements RecentPresenter, RecentPresenterCall
 
     @Override
     public void onNewRecentAdded() {
-        if (view!=null) loadItems();
+        if (view != null) loadItems();
     }
 }

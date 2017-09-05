@@ -3,6 +3,7 @@ package com.sardox.weatherapp.weather;
 
 public interface WeatherPresenter {
     void onViewPrepared();
+
     //void updateRepo(List<OpenSourceResponse.Repo> repoList);
     void onAttach(WeatherView view);
 

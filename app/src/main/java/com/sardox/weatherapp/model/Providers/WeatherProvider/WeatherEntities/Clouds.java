@@ -1,4 +1,3 @@
-
 package com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities;
 
 import com.google.gson.annotations.Expose;

@@ -3,10 +3,10 @@ package com.sardox.weatherapp.Dagger;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import com.sardox.weatherapp.main.SectionsPagerAdapter;
-import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 import com.sardox.weatherapp.main.MainPresenter;
 import com.sardox.weatherapp.main.MainPresenterImpl;
+import com.sardox.weatherapp.main.SectionsPagerAdapter;
+import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 import com.sardox.weatherapp.recents.RecentAdapter;
 import com.sardox.weatherapp.recents.RecentPresenter;
 import com.sardox.weatherapp.recents.RecentPresenterImpl;

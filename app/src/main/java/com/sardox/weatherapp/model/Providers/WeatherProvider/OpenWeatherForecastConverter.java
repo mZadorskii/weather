@@ -1,16 +1,16 @@
 package com.sardox.weatherapp.model.Providers.WeatherProvider;
 
-import com.sardox.weatherapp.utils.WeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.Main;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.Weather;
+import com.sardox.weatherapp.utils.WeatherForecast;
 
 import java.util.List;
 
 
 public class OpenWeatherForecastConverter {
 
-        public static WeatherForecast toMyWeatherForecast(OpenWeatherForecast openWeather) {
+    public static WeatherForecast toMyWeatherForecast(OpenWeatherForecast openWeather) {
         WeatherForecast weatherForecast = new WeatherForecast();
 
         Main main = openWeather.getMain();

@@ -1,17 +1,15 @@
 package com.sardox.weatherapp.weather;
 
-import android.util.Log;
-
+import com.sardox.weatherapp.model.MainModel;
+import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
+import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
+import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.utils.Utils;
 import com.sardox.weatherapp.utils.WeatherForecast;
-import com.sardox.weatherapp.model.MainModel;
-import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
-import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
-import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 
 import javax.inject.Inject;
 
@@ -71,7 +69,7 @@ public class WeatherPresenterImp implements WeatherPresenter, WeatherPresenterCa
     @Override
     public void onDetach() {
         this.view = null;
-         //mainModel.setupWeatherPresenterCallback(null);
+        //mainModel.setupWeatherPresenterCallback(null);
     }
 
     @Override

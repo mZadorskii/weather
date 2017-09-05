@@ -1,8 +1,6 @@
 package com.sardox.weatherapp.utils;
 
 
-import android.util.Patterns;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +13,7 @@ public class Utils {
 
     /**
      * here only basic rules
-     need to add more rules for incorrect inputs
+     * need to add more rules for incorrect inputs
      */
     public static INPUT_TYPE validateInput(String input) {
         Pattern pattern = Pattern.compile(postalRegex);

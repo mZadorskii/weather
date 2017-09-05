@@ -2,9 +2,6 @@ package com.sardox.weatherapp.weather;
 
 import android.app.AlertDialog;
 import android.content.Context;
-
-import java.text.DecimalFormat;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,9 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sardox.weatherapp.Dagger.ActivityComponent;
-import com.sardox.weatherapp.main.MainActivity;
 import com.sardox.weatherapp.R;
+import com.sardox.weatherapp.main.MainActivity;
 import com.sardox.weatherapp.utils.WeatherForecast;
+
+import java.text.DecimalFormat;
 
 import javax.inject.Inject;
 
@@ -227,7 +226,7 @@ public class WeatherFragment extends Fragment implements WeatherView {
     @Override
     public void askUserToEnablePermissions() {
         Toast.makeText(getActivity(), "Location permission is disabled. Please enable", Toast.LENGTH_LONG).show();
-       // new AppSettingsDialog.Builder(getActivity()).build().show();
+        // new AppSettingsDialog.Builder(getActivity()).build().show();
     }
 
     @Override

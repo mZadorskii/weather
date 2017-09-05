@@ -1,4 +1,3 @@
-
 package com.sardox.weatherapp.Dagger;
 
 import java.lang.annotation.Retention;

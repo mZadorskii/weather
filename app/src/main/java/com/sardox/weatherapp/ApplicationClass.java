@@ -12,7 +12,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
-public class ApplicationClass extends Application{
+public class ApplicationClass extends Application {
     private AppComponent component;
 
     @Inject

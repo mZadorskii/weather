@@ -1,13 +1,9 @@
 package com.sardox.weatherapp.weather;
 
-import com.sardox.weatherapp.main.MainPresenterImpl;
-import com.sardox.weatherapp.main.MainView;
 import com.sardox.weatherapp.model.MainModel;
 import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
 import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
 import com.sardox.weatherapp.utils.Consumer;
 import com.sardox.weatherapp.utils.WeatherForecast;
@@ -20,7 +16,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
@@ -40,7 +35,7 @@ public class WeatherPresenterImpTest {
 
     @Mock
     MainModel mainModel;
-    private  WeatherPresenterImp  weatherPresenter;
+    private WeatherPresenterImp weatherPresenter;
 
     @Before
     public void setUp() throws Exception {
@@ -52,7 +47,7 @@ public class WeatherPresenterImpTest {
 
     @Test
     public void showLoadingOnLocationReceived() throws Exception {
-        weatherPresenter.onLocationReceived(new MyLocation(10,10));
+        weatherPresenter.onLocationReceived(new MyLocation(10, 10));
         verify(view, times(1)).showLoading();
     }
 

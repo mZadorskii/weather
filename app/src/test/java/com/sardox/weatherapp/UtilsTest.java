@@ -4,7 +4,7 @@ import com.sardox.weatherapp.utils.Utils;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by sardox on 9/3/2017.

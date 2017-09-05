@@ -11,13 +11,12 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by sardox on 9/4/2017.
  */
 public class MyRecentProviderTest {
-
 
 
     @Mock
@@ -31,7 +30,7 @@ public class MyRecentProviderTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         recentItemHashMap = new HashMap<>();
-        myRecentProvider = new MyRecentProvider(recentItemHashMap,appPref);
+        myRecentProvider = new MyRecentProvider(recentItemHashMap, appPref);
     }
 
     @Test

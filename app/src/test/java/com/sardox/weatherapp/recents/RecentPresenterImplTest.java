@@ -2,7 +2,6 @@ package com.sardox.weatherapp.recents;
 
 import com.sardox.weatherapp.model.MainModel;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.utils.Consumer;
 
 import org.junit.Before;
@@ -16,12 +15,7 @@ import org.mockito.stubbing.Answer;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Callback;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -42,10 +36,6 @@ public class RecentPresenterImplTest {
 
         recentPresenter = new RecentPresenterImpl(mainModel);
         recentPresenter.onAttach(recentView);
-    }
-
-    @Test
-    public void onRecentClicked() throws Exception {
     }
 
 

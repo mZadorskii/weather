@@ -6,8 +6,8 @@
     <string name="temperature">Temperature: %1$s°</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="temperature_demo">Temperature: --</string>
-    <string name="humidity_demo">Humidity: --</string>
+    <string name="temperature_demo">Temperature: —</string>
+    <string name="humidity_demo">Humidity: —</string>
     <string name="no_info_demo">No info..</string>
     <string name="gps">GPS</string>
     <string name="hint_enter_zip_or_city">Enter ZIP or City</string>

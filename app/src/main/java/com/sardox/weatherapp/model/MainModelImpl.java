@@ -1,23 +1,22 @@
 package com.sardox.weatherapp.model;
 
 
-import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
-import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
-import com.sardox.weatherapp.utils.Consumer;
-import com.sardox.weatherapp.utils.WeatherForecast;
+import com.sardox.weatherapp.main.MainPresenterCallback;
 import com.sardox.weatherapp.model.Providers.LocationProvider.LocationCallback;
 import com.sardox.weatherapp.model.Providers.LocationProvider.LocationProvider;
-
 import com.sardox.weatherapp.model.Providers.LocationProvider.MyLocation;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentItem;
 import com.sardox.weatherapp.model.Providers.RecentProvider.RecentProvider;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.OpenWeatherForecastConverter;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherEntities.OpenWeatherForecast;
 import com.sardox.weatherapp.model.Providers.WeatherProvider.WeatherProvider;
-import com.sardox.weatherapp.main.MainPresenterCallback;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.CityKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.LocationKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.MyCacheKey;
+import com.sardox.weatherapp.model.Providers.WeatherProvider.cache.ZipKey;
 import com.sardox.weatherapp.recents.RecentPresenterCallback;
+import com.sardox.weatherapp.utils.Consumer;
+import com.sardox.weatherapp.utils.WeatherForecast;
 import com.sardox.weatherapp.weather.WeatherPresenterCallback;
 
 import org.joda.time.DateTime;
@@ -125,9 +124,9 @@ public class MainModelImpl implements MainModel {
     @Override
     public void getWeatherByKey(MyCacheKey key) {
         mainPresenterCallback.onWeatherRequestedFromRecent();//  todo fix. need a callback to switch
-        if(key instanceof ZipKey) getWeatherByZip((ZipKey) key);
-        if(key instanceof CityKey) getWeatherByCity((CityKey) key);
-        if(key instanceof LocationKey) getWeatherByLatLon((LocationKey) key);
+        if (key instanceof ZipKey) getWeatherByZip((ZipKey) key);
+        if (key instanceof CityKey) getWeatherByCity((CityKey) key);
+        if (key instanceof LocationKey) getWeatherByLatLon((LocationKey) key);
     }
 
     @Override

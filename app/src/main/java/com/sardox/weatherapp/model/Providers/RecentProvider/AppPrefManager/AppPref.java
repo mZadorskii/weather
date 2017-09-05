@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface AppPref {
     List<RecentItem> loadRecentItems();
+
     void saveItems(Collection<RecentItem> items);
 
 }

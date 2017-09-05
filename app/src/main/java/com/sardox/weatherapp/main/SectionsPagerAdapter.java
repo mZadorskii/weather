@@ -8,7 +8,7 @@ import com.sardox.weatherapp.recents.RecentFragment;
 import com.sardox.weatherapp.weather.WeatherFragment;
 
 
-public class SectionsPagerAdapter  extends FragmentStatePagerAdapter {
+public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     private int mTabCount;
 
     public SectionsPagerAdapter(FragmentManager fragmentManager) {
