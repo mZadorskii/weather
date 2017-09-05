@@ -22,8 +22,8 @@ import retrofit2.Response;
 
 public class MyCachedWeatherProvider implements WeatherProvider {
     private OpenWeatherService openWeatherService;
-    private Cache<MyCacheKey, OpenWeatherForecast> weatherCache; // todo rework with LoadingCache if possible
-    private final String apiKey = "95d190a434083879a6398aafd54d9e73";
+    private Cache<MyCacheKey, OpenWeatherForecast> weatherCache;                // todo rework with LoadingCache if possible
+    private final String apiKey = "95d190a434083879a6398aafd54d9e73";           // todo move to gitignore file or to buildConfig
 
     @Inject
     public MyCachedWeatherProvider(final OpenWeatherService openWeatherService, Cache<MyCacheKey, OpenWeatherForecast> weatherCache) {
@@ -34,10 +34,8 @@ public class MyCachedWeatherProvider implements WeatherProvider {
 
     @Override
     public void getWeatherByCity(final String city, final Consumer<OpenWeatherForecast> consumer) {
-        //Log.v("weatherApp", "getWeatherByCity for: " + city);
         OpenWeatherForecast cachedOpenWeatherForecast = weatherCache.getIfPresent(new CityKey(city));
         if (cachedOpenWeatherForecast != null) {
-            //Log.v("weatherApp", "getWeatherByCity is retrieved from cache");
             consumer.onSuccess(cachedOpenWeatherForecast);
             return;
         }
@@ -46,7 +44,6 @@ public class MyCachedWeatherProvider implements WeatherProvider {
             public void onResponse
                     (@NonNull Call<OpenWeatherForecast> call, @NonNull Response<OpenWeatherForecast> response) {
 
-                //Log.v("weatherApp", "getWeatherByCity onResponse");
                 if (response.isSuccessful()) {
                     OpenWeatherForecast receivedForecast = response.body();
                     if (receivedForecast != null) {
@@ -55,25 +52,21 @@ public class MyCachedWeatherProvider implements WeatherProvider {
                         return;
                     }
                 }
-                //Log.v("weatherApp", "getWeatherByCity onResponse is not Successful");
-                consumer.onFailed("Unable to get weather.."); //TODO REWORK
+                consumer.onFailed("Unable to get weather..");               //TODO REWORK error handling and string->int with resID (in presenter)
             }
 
             @Override
             public void onFailure(@NonNull Call<OpenWeatherForecast> call, @NonNull Throwable t) {
-                //Log.v("weatherApp", "getWeatherByCity onFailure");
-                consumer.onFailed("Unable to connect to weather service.."); //TODO REWORK
+                consumer.onFailed("Unable to connect to weather service..");  //TODO REWORK error handling and string->int with resID (in presenter)
             }
         });
     }
 
     @Override
     public void getWeatherByZip(final String zip, final Consumer<OpenWeatherForecast> consumer) {
-//        Log.v("weatherApp", "getWeatherByZip for: " + zip);
         OpenWeatherForecast cachedOpenWeatherForecast = weatherCache.getIfPresent(new ZipKey(zip));
 
         if (cachedOpenWeatherForecast != null) {
-      //      Log.v("weatherApp", "getWeatherByZip is retrieved from cache");
             consumer.onSuccess(cachedOpenWeatherForecast);
             return;
         }
@@ -81,7 +74,6 @@ public class MyCachedWeatherProvider implements WeatherProvider {
             @Override
             public void onResponse
                     (@NonNull Call<OpenWeatherForecast> call, @NonNull Response<OpenWeatherForecast> response) {
-           //     Log.v("weatherApp", "getWeatherByZip onResponse");
                 if (response.isSuccessful()) {
                     OpenWeatherForecast receivedForecast = response.body();
                     if (receivedForecast != null) {
@@ -91,21 +83,18 @@ public class MyCachedWeatherProvider implements WeatherProvider {
                     }
                 }
 
-              //  Log.v("weatherApp", "getWeatherByZip onResponse is not Successful");
-                consumer.onFailed("Unable to get weather.."); //TODO REWORK
+                consumer.onFailed("Unable to get weather..");  //TODO REWORK error handling and string->int with resID (in presenter)
             }
 
             @Override
             public void onFailure(@NonNull Call<OpenWeatherForecast> call, @NonNull Throwable t) {
-              //  Log.v("weatherApp", "getWeatherByZip onFailure");
-                consumer.onFailed("Unable to connect to weather service.."); //TODO REWORK
+                consumer.onFailed("Unable to connect to weather service..");  //TODO REWORK error handling and string->int with resID (in presenter)
             }
         });
     }
 
     @Override
     public void getWeatherByLatLon(final MyLocation location, final Consumer<OpenWeatherForecast> consumer) {
-        //Log.v("weatherApp", "getWeatherByLatLon for: " + location.getLat() + ", " + location.getLon());
         OpenWeatherForecast cachedOpenWeatherForecast = weatherCache.getIfPresent(new LocationKey(location));
         if (cachedOpenWeatherForecast != null) {
             Log.v("weatherApp", "getWeatherByLatLon is retrieved from cache");
@@ -116,7 +105,6 @@ public class MyCachedWeatherProvider implements WeatherProvider {
             @Override
             public void onResponse
                     (@NonNull Call<OpenWeatherForecast> call, @NonNull Response<OpenWeatherForecast> response) {
-                //Log.v("weatherApp", "getWeatherByLatLon onResponse");
                 if (response.isSuccessful()) {
                     OpenWeatherForecast receivedForecast = response.body();
                     if (receivedForecast != null) {
@@ -126,14 +114,12 @@ public class MyCachedWeatherProvider implements WeatherProvider {
                     }
                 }
 
-                //Log.v("weatherApp", "getWeatherByLatLon onResponse is not Successful");
-                consumer.onFailed("Unable to get weather.."); //TODO REWORK
+                consumer.onFailed("Unable to get weather..");  //TODO REWORK error handling and string->int with resID (in presenter)
             }
 
             @Override
             public void onFailure(@NonNull Call<OpenWeatherForecast> call, @NonNull Throwable t) {
-                //Log.v("weatherApp", "getWeatherByZip onFailure");
-                consumer.onFailed("Unable to connect to weather service.."); //TODO REWORK
+                consumer.onFailed("Unable to connect to weather service..");  //TODO REWORK error handling and string->int with resID (in presenter)
             }
         });
     }
